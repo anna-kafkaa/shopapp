@@ -1,9 +1,7 @@
-// Etap 1-6: Pełna wersja komponentu Product
-
 import styles from "./Product.module.scss";
 import clsx from "clsx";
 import PropTypes from "prop-types";
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import Button from "../../Button/Button";
 
 const Product = (props) => {
@@ -12,19 +10,17 @@ const Product = (props) => {
   const [currentColor, setCurrentColor] = useState(colors[0]);
   const [currentSize, setCurrentSize] = useState(Object.keys(sizes)[0]);
 
-  const getPrice = () => basePrice + sizes[currentSize];
+  const price = useMemo(() => basePrice + sizes[currentSize], [basePrice, sizes, currentSize]);
 
   const prepareColorClassName = (color) => {
-    return styles[
-      "color" + color[0].toUpperCase() + color.substr(1).toLowerCase()
-    ];
+    return styles["color" + color[0].toUpperCase() + color.substr(1).toLowerCase()];
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("--- SUMMARY ---");
     console.log("Name:", title);
-    console.log("Price:", getPrice());
+    console.log("Price:", price);
     console.log("Size:", currentSize);
     console.log("Color:", currentColor);
   };
@@ -41,7 +37,7 @@ const Product = (props) => {
       <div>
         <header>
           <h2 className={styles.name}>{title}</h2>
-          <span className={styles.price}>Price: {getPrice()}$</span>
+          <span className={styles.price}>Price: {price}$</span>
         </header>
         <form onSubmit={handleSubmit}>
           <div className={styles.sizes}>
