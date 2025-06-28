@@ -1,7 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
-import './index.scss'; // jeśli używasz SCSS
+import './styles/normalize.scss';
+import './styles/global.scss';
+
 
 import Products from './components/Products/Products';
 import Header from './components/Header/Header';
