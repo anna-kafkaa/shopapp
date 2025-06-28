@@ -1,12 +1,12 @@
 // Etap 1-6: Pełna wersja komponentu Product
 
-import styles from './Product.module.scss';
-import clsx from 'clsx';
-import PropTypes from 'prop-types';
-import { useState } from 'react';
-import Button from '../Button/Button';
+import styles from "./Product.module.scss";
+import clsx from "clsx";
+import PropTypes from "prop-types";
+import { useState } from "react";
+import Button from "../../Button/Button";
 
-const Product = props => {
+const Product = (props) => {
   const { title, name, basePrice, colors, sizes } = props;
 
   const [currentColor, setCurrentColor] = useState(colors[0]);
@@ -14,17 +14,19 @@ const Product = props => {
 
   const getPrice = () => basePrice + sizes[currentSize];
 
-  const prepareColorClassName = color => {
-    return styles['color' + color[0].toUpperCase() + color.substr(1).toLowerCase()];
+  const prepareColorClassName = (color) => {
+    return styles[
+      "color" + color[0].toUpperCase() + color.substr(1).toLowerCase()
+    ];
   };
 
-  const handleSubmit = e => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('--- SUMMARY ---');
-    console.log('Name:', title);
-    console.log('Price:', getPrice());
-    console.log('Size:', currentSize);
-    console.log('Color:', currentColor);
+    console.log("--- SUMMARY ---");
+    console.log("Name:", title);
+    console.log("Price:", getPrice());
+    console.log("Size:", currentSize);
+    console.log("Color:", currentColor);
   };
 
   return (
@@ -45,7 +47,7 @@ const Product = props => {
           <div className={styles.sizes}>
             <h3 className={styles.optionLabel}>Sizes</h3>
             <ul className={styles.choices}>
-              {Object.keys(sizes).map(size => (
+              {Object.keys(sizes).map((size) => (
                 <li key={size}>
                   <button
                     type="button"
@@ -62,7 +64,7 @@ const Product = props => {
           <div className={styles.colors}>
             <h3 className={styles.optionLabel}>Colors</h3>
             <ul className={styles.choices}>
-              {colors.map(color => (
+              {colors.map((color) => (
                 <li key={color}>
                   <button
                     type="button"
